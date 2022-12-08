@@ -6,6 +6,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  //function should be defined in the class, instead of in this file(outside this class)
+  void answerQuestion() {
+    print('click me? times');
+  }
   //every widget in Flutter needs to extend stateless widget or stateful widget,
   //so it needs to extend one of these two base widget classes and each of these classes will force you to add a build method because in the end, Flutter will always call that build method for you.
 
@@ -17,9 +21,22 @@ class MyApp extends StatelessWidget {
       //MaterialApp is provided by material.dart提供的method
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My Bae'),
+          title: Text('My App'),
         ),
-        body: Text('Body'),
+        body: Column(
+          children: [
+            Text('The question'),
+            ElevatedButton(child: Text('Answer1'), onPressed: answerQuestion),
+            //ElevatedButton(new) v.s RaisedButton(already deprecated)
+            ElevatedButton(
+                child: Text('Answer2'), onPressed: () => print('try arrow')),
+            ElevatedButton(
+                child: Text('Answer3'),
+                onPressed: () {
+                  print('try inline method');
+                })
+          ],
+        ),
       ),
     );
     //So both text and hello are arguments, text is an argument to MaterialApp for the home argument
